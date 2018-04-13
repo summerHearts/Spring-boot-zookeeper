@@ -51,7 +51,7 @@ public class ZKGetNodeData implements Watcher {
 		 * watch：true或者false，注册一个watch事件
 		 * stat：状态
 		 */
-		byte[] resByte = zkServer.getZookeeper().getData("/imooc", true, stat);
+		byte[] resByte = zkServer.getZookeeper().getData("/tapps", true, stat);
 		String result = new String(resByte);
 		System.out.println("当前值:" + result);
 		countDown.await();
@@ -62,7 +62,7 @@ public class ZKGetNodeData implements Watcher {
 		try {
 			if(event.getType() == EventType.NodeDataChanged){
 				ZKGetNodeData zkServer = new ZKGetNodeData(zkServerPath);
-				byte[] resByte = zkServer.getZookeeper().getData("/imooc", false, stat);
+				byte[] resByte = zkServer.getZookeeper().getData("/tapps", false, stat);
 				String result = new String(resByte);
 				System.out.println("更改后的值:" + result);
 				System.out.println("版本号变化dversion：" + stat.getVersion());
